@@ -12,14 +12,15 @@ app.use(cors({
 // Middleware para parsear JSON
 app.use(express.json());
 
-app.get("/ping", async (req, res) => {
+app.get("/promo", async (req, res) => {
   try {
-    const [result] = await pool.query(`SELECT "HELLO WORLD" as RESULT`);
-    console.log(result);
-    res.json({ message: "benvenido", result });
+    const [rows] = await pool.query(
+      "SELECT * FROM productos ORDER BY precio ASC LIMIT 5"
+    );
+    res.json(rows);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Error en el servidor" });
+    res.status(500).json({ error: "Error al obtener productos" });
   }
 });
 
