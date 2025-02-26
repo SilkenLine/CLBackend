@@ -33,6 +33,17 @@ app.get("/", async (req, res) => {
     res.status(500).json({ error: "Error al obtener productos" });
   }
 });
+app.get("/modal", async (req, res) => {
+  try {
+    const [rows] = await pool.query(
+      "SELECT * FROM productos WHERE id_productos=1"
+    );
+    res.json(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al obtener productos" });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`); // Puerto dinámico
