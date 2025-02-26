@@ -36,7 +36,7 @@ app.get("/", async (req, res) => {
 app.get("/modal", async (req, res) => {
   try {
     const [rows] = await pool.query(
-      "SELECT * FROM productos WHERE id_productos=1"
+      "SELECT * FROM productos WHERE id_productos='1'"
     );
     res.json(rows);
   } catch (error) {
