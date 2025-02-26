@@ -33,10 +33,11 @@ app.get("/", async (req, res) => {
     res.status(500).json({ error: "Error al obtener productos" });
   }
 });
-app.get("/modal", async (req, res) => {
+app.get("/modal/:id", async (req, res) => {
   try {
+    const { id } = req.params; // Obtén el id de los parámetros de la ruta
     const [rows] = await pool.query(
-      "SELECT * FROM productos WHERE id_producto=1"
+      "SELECT * FROM productos WHERE id_productos = ?", [id]
     );
     res.json(rows);
   } catch (error) {
