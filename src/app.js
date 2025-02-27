@@ -47,7 +47,7 @@ app.get("/modal", async (req, res) => {
 });
 app.get("/category", async (req, res) => {
   try {
-    const { category } = req.query; // Obtén el id de los parámetros de consulta
+    const { categoria } = req.query; // Obtén el id de los parámetros de consulta
     const [rows] = await pool.query(
       "SELECT * FROM productos WHERE categoria = ?", [categoria]
     );
